@@ -14,6 +14,7 @@ file_make * init_file_make(char * file_dest) {
   file_make * fm = calloc(1, sizeof(struct FILE_MAKE_T));
   fm->src = NULL;
   fm->fp = fopen(file_dest, "w");
+  return fm;
 }
 
 /**

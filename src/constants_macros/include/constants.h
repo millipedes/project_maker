@@ -1,5 +1,5 @@
-#ifndef PRO_H
-#define PRO_H
+#ifndef CON_H
+#define CON_H
 
 #define MX_STR 256
 

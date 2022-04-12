@@ -11,19 +11,26 @@
 
 /**
  * This function initializes a user defined file type.
- * @param       ext - the file extension.
- * @param interface - the interface through which the file is used. I.e. the
+ * @param   ext - the file extension.
+ * @param inter - the interface through which the file is used. I.e. the
  * compiler/interpreter etc.
- * @param      name - the name of the file.
- * @param        pd - the parent directory of the file.
- * @return      udf - the new user defined file.
+ * @param   name - the name of the file.
+ * @param     pd - the parent directory of the file.
+ * @param   file - the structure respresentative of the file
+ * @return   udf - the new user defined file.
  */
-ud_file * init_ud_file(char * ext, char * interface, char * name, char * pd) {
+ud_file * init_ud_file(char * ext, char * inter, char * name, char * pd,
+  void (*fun_ptr)(ud_file *)) {
   ud_file * udf = calloc(1, sizeof(struct UD_FILE_T));
   deep_copy_string(udf->ext, ext);
-  deep_copy_string(udf->interface, interface);
+  deep_copy_string(udf->inter, inter);
   deep_copy_string(udf->name, name);
   deep_copy_string(udf->pd, pd);
+  /**
+   * This allows for genericity, for example if we wanted a file_make, we would
+   * pass in the file_make's make_clone to make this ud_file a make_file.
+   */
+  (*fun_ptr)(udf);
   return udf;
 }
 
@@ -36,8 +43,8 @@ void free_ud_files(ud_file * udf) {
   if(udf->ext) {
     free(udf->ext);
   }
-  if(udf->interface) {
-    free(udf->interface);
+  if(udf->inter) {
+    free(udf->inter);
   }
   if(udf->name) {
     free(udf->name);

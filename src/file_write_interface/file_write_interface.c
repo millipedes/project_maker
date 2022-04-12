@@ -1,9 +1,12 @@
 #include"include/file_write_interface.h"
 
-void write_flags(int argc, char ** argv) {
+void write_files(int argc, char ** argv) {
   int flag = 0;
-  int latex_written = 0;
+  // int latex_written = 0;
   /**
+   * I don't think this block is deoxygen standard, but it is here to help keep
+   * track of the flags.
+   *
    * @flag h   - help flag
    * @flag c   - classification flag (like your the orgranization)
    * @flag t/l - latex    file type flag, followed by name/path
@@ -15,7 +18,7 @@ void write_flags(int argc, char ** argv) {
   while((flag = getopt(argc, argv, "h:c:t:l:p:C:g:e:")) != -1) {
     switch(flag) {
       case 'h':
-
+        print_help_interface();
         break;
       case 'c':
         break;

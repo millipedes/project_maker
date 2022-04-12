@@ -10,6 +10,7 @@
 #define UFUN_H
 
 #include<stdlib.h>
+#include<string.h>
 #include"constants.h"
 
 void deep_copy_string(char * dest, char * src);

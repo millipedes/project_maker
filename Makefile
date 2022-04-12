@@ -11,6 +11,9 @@ all:$(OBJFILES)
 %.o: %.c $(HFILES)%.h
 	$(CC) -c $(CFILES) $< -o $@ -lm
 
+help:
+	./bin/main -h
+
 vim:
 	nvim $(CFILES) 
 

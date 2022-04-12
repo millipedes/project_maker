@@ -33,11 +33,15 @@ void deep_copy_string(char * dest, char * src) {
  * @return     N/a
  */
 void append_string(char * src, char * addition) {
-  size_t add_len = strnlen(addition, MX_STR);
-  size_t ori_len = strnlen(src, MX_STR);
-  src = realloc(add_len + ori_len, sizeof(char));
-  for(int i = 0; i < add_len; i++) {
-    *(src + i + ori_len + 1) = *(addition + i);
+  if(!src) {
+    deep_copy_string(src, addition);
+  } else {
+    size_t add_len = strnlen(addition, MX_STR);
+    size_t ori_len = strnlen(src, MX_STR);
+    src = realloc(src, (add_len + ori_len) * sizeof(char));
+    for(int i = 0; i < add_len; i++) {
+      *(src + i + ori_len + 1) = *(addition + i);
+    }
   }
 }
 
@@ -74,8 +78,8 @@ char ** path_to_pd_and_fn(char * path) {
     }
   }
   int file_name_size = len - index_curr_dir;
-  char ** attibs = calloc(2, sizeof(char *));
+  char ** attribs = calloc(2, sizeof(char *));
   attribs[0] = get_sub_string(path, 0, (len - file_name_size + 1));
-  attibs[1] = get_sub_string(path, (len - file_name_size), len + 1);
-  return attibs;
+  attribs[1] = get_sub_string(path, (len - file_name_size), len + 1);
+  return attribs;
 }

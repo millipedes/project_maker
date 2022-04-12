@@ -15,13 +15,15 @@
 #include"../../constants_macros/include/universal_funcs.h"
 
 typedef struct UD_FILE_T {
-  char * ext;       // File Extension
-  char * interface; // File Compiler/Interpretor/Valid Interface
-  char * name;      // File Name
-  char * pd;        // Parent Directory
+  char * ext;        // File Extension
+  char * inter;      // File Compiler/Interpretor/Valid Interface
+  char * name;       // File Name
+  char * pd;         // Parent Directory
+  void * file;       // The file
 } ud_file;
 
-ud_file * init_ud_file(char * ext, char * interface, char * name, char * pd);
-void free_ud_files(ud_file udf);
+ud_file * init_ud_file(char * ext, char * inter, char * name, char * pd,
+  void (*fun_ptr)(ud_file *));
+void free_ud_files(ud_file * udf);
 
 #endif
