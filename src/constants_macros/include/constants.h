@@ -11,8 +11,8 @@
 
 #define MX_STR 1024
 
-#define MAKEFILE_PATH      "Makefile"
+#define      MAKEFILE_PATH "Makefile"
 #define LATEX_DEFAULT_FILE "/home/knd/.config/bash_scripts/references/latex/general.tex"
-#define C_PATH             "/home/knd/.config/bash_scripts/references/c_lang/main.c"
+#define     C_DEFAULT_FILE "/home/knd/.config/bash_scripts/references/c_lang/main.c"
 
 #endif
