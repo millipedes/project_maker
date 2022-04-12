@@ -9,6 +9,7 @@
 #ifndef FIL_H
 #define FIL_H
 
+#include<stdio.h>
 #include<unistd.h>
 #include"../../constants_macros/include/constants.h"
 #include"../../constants_macros/include/universal_funcs.h"

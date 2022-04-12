@@ -9,7 +9,11 @@
  */
 #include"include/file_make.h"
 
-
+/**
+ * This function initializes a Makefile
+ * @param file_dest - the destination of the Makefile
+ * @return       fm - the Makefile
+ */
 file_make * init_file_make(char * file_dest) {
   file_make * fm = calloc(1, sizeof(struct FILE_MAKE_T));
   fm->src = NULL;

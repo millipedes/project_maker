@@ -15,6 +15,7 @@
  */
 void write_files(int argc, char ** argv) {
   char ** fpd_pair = NULL;
+
   for(int i = 1; i < argc; i += 2) {
     switch(argv[i][0]) {
       case 'h':
@@ -23,7 +24,12 @@ void write_files(int argc, char ** argv) {
       case 't':
       case 'l':
         fpd_pair = path_to_fpd_pair(argv[i + 1]);
-        printf("0) `%s`\n1) `%s`\n", fpd_pair[0], fpd_pair[1]);
+        // printf("0) `%s`\n1) `%s`\n", fpd_pair[0], fpd_pair[1]);
+        if(fpd_pair[0][0] != '\0') { 
+
+        } else {
+
+        }
         free_fpd_pair(fpd_pair);
         break;
       case 'p':

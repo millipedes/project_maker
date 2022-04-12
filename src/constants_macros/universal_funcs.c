@@ -79,7 +79,7 @@ char ** path_to_fpd_pair(char * path) {
   }
   char ** attribs = calloc(2, sizeof(char *));
   int file_name_size = len - index_curr_dir;
-  // If just a file, the parent directory is just the null character
+  // If just a file, the parent directory is just the EOF character
   if(index_curr_dir == 0) {
     attribs[0] = calloc(1, sizeof(char));
     attribs[0][0] = '\0';
