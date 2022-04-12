@@ -55,7 +55,7 @@ void append_string(char * src, char * addition) {
  * @return
  */
 char * get_sub_string(char * src, int start, int end_po) {
-  char * ss = calloc(end_po - start, sizeof(char));
+  char * ss = calloc(end_po - start + 1, sizeof(char));
   for(int i = start; i < end_po; i++) {
     *(ss + i - start) = *(src + i);
   }
@@ -69,7 +69,7 @@ char * get_sub_string(char * src, int start, int end_po) {
  * @param path - the path to the file.
  * @return
  */
-char ** path_to_pd_and_fn(char * path) {
+char ** path_to_fpd_pair(char * path) {
   size_t len = strnlen(path, MX_STR);
   int index_curr_dir = 0;
   for(int i = 0; i < len; i++) {
@@ -80,6 +80,23 @@ char ** path_to_pd_and_fn(char * path) {
   int file_name_size = len - index_curr_dir;
   char ** attribs = calloc(2, sizeof(char *));
   attribs[0] = get_sub_string(path, 0, (len - file_name_size + 1));
-  attribs[1] = get_sub_string(path, (len - file_name_size), len + 1);
+  attribs[1] = get_sub_string(path, (len - file_name_size + 1), len);
   return attribs;
+}
+
+/**
+ * This function frees the file parent directory pair
+ * @param fpd_pair - the file parent directory pair
+ * @return     N/a
+ */
+void free_fpd_pair(char ** fpd_pair) {
+  if(fpd_pair[0]) {
+    free(fpd_pair[0]);
+  }
+  if(fpd_pair[1]) {
+    free(fpd_pair[1]);
+  }
+  if(fpd_pair) {
+    free(fpd_pair);
+  }
 }

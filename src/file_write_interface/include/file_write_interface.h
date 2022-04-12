@@ -10,6 +10,8 @@
 #define FIL_H
 
 #include<unistd.h>
+#include"../../constants_macros/include/constants.h"
+#include"../../constants_macros/include/universal_funcs.h"
 #include"../../menu_interface/include/menu_interface.h"
 
 void write_files(int argc, char ** argv);

@@ -12,7 +12,7 @@ all:$(OBJFILES)
 	$(CC) -c $(CFILES) $< -o $@ -lm
 
 help:
-	./bin/main -h
+	./bin/main h
 
 vim:
 	nvim $(CFILES) 

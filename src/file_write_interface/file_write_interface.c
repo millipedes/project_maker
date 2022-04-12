@@ -14,23 +14,17 @@
  * @return
  */
 void write_files(int argc, char ** argv) {
-  int latex_written = 0;
-  /**
-   * I don't think this block is deoxygen standard, but it is here to help keep
-   * track of the flags.
-   *
-   * @flag h   - help flag
-   */
-  for(int i = 1; i < argc; i++) {
+  char ** fpd_pair = NULL;
+  for(int i = 1; i < argc; i += 2) {
     switch(argv[i][0]) {
       case 'h':
-        print_invalid_flags_help_interface();
+        print_help_interface();
         break;
       case 't':
       case 'l':
-        if(latex_written == 0) {
-          latex_written = 1;
-        }
+        fpd_pair = path_to_fpd_pair(argv[i + 1]);
+        printf("0) `%s`\n1) `%s`\n", fpd_pair[0], fpd_pair[1]);
+        free_fpd_pair(fpd_pair);
         break;
       case 'p':
         break;
@@ -40,6 +34,7 @@ void write_files(int argc, char ** argv) {
         break;
       default:
         fprintf(stderr, "Unknown flag `%c`", argv[i][0]);
+        print_invalid_flags_help_interface();
     }
   }
 }

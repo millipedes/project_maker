@@ -16,6 +16,7 @@
 void deep_copy_string(char * dest, char * src);
 void append_string(char * src, char * addition);
 char * get_sub_string(char * src, int start, int end_po);
-char ** path_to_pd_and_fn(char * path);
+char ** path_to_fpd_pair(char * path);
+void free_fpd_pair(char ** fpd_pair);
 
 #endif
