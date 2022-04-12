@@ -11,7 +11,8 @@
 
 #define MX_STR 256
 
-#define LATEX_PATH "~/.config/bash_scripts/references/latex/"
-#define C_PATH     "~/.config/bash_scripts/references/c_lang/"
+#define MAKEFILE_PATH      "Makefile"
+#define LATEX_DEFAULT_FILE "~/.config/bash_scripts/references/latex/general.tex"
+#define C_PATH             "~/.config/bash_scripts/references/c_lang/main.c"
 
 #endif
