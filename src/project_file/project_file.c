@@ -1,13 +1,23 @@
 /**
- * @file This file contains the functions relating to the
- * @brief 
+ * @file project_file.c
+ * @brief This file contains the functions relating to the user defined file
+ * types. For example, a latex file would be an instance of a user defined file.
  * @author Matthew C. Lindeman
- * @date 
+ * @date Apr 12 2022
  * @bug None known
  * @todo Nothing
  */
 #include"include/project_file.h"
 
+/**
+ * This function initializes a user defined file type.
+ * @param       ext - the file extension.
+ * @param interface - the interface through which the file is used. I.e. the
+ * compiler/interpreter etc.
+ * @param      name - the name of the file.
+ * @param        pd - the parent directory of the file.
+ * @return      udf - the new user defined file.
+ */
 ud_file * init_ud_file(char * ext, char * interface, char * name, char * pd) {
   ud_file * udf = calloc(1, sizeof(struct UD_FILE_T));
   deep_copy_string(udf->ext, ext);
@@ -15,23 +25,6 @@ ud_file * init_ud_file(char * ext, char * interface, char * name, char * pd) {
   deep_copy_string(udf->name, name);
   deep_copy_string(udf->pd, pd);
   return udf;
-}
-
-
-/**
- * This function deep copies a string with exact behavior I require for this
- * purpose (there may exist a library function with this exact functionality IDK
- * personaly, but I doubt it).
- * @param  dest - the destination string that is *uninitialized*.
- * @param   src - the source string.
- * @return  N/a
- */
-void deep_copy_string(char * dest, char * src) {
-  size_t len = strnlen(src, MX_STR);
-  dest = calloc(len - 1, sizeof(char));
-  for(int i = 0; i < len; i++) {
-    *(dest + i) = *(src + i);
-  }
 }
 
 /**
