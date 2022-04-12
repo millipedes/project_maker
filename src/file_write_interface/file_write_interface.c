@@ -39,6 +39,7 @@ void write_files(int argc, char ** argv) {
         print_invalid_flags_help_interface();
     }
   }
+  free_file_make(fm);
 }
 
 void write_latex_extension(file_make * fm, char ** fpd_pair) {
@@ -53,10 +54,12 @@ void write_latex_extension(file_make * fm, char ** fpd_pair) {
 }
 
 void translate_default_latex_file(char * project_path, char * default_path) {
-  FILE * default_latex_file = fopen(default_path, "r");
+  FILE * default_latex_file = fopen(default_path, "r+");
   FILE * project_latex_file = fopen(project_path, "w");
   char buf[MX_STR];
   while(fgets(buf, MX_STR, default_latex_file)) {
     fprintf(project_latex_file, "%s", buf);
   }
+  fclose(default_latex_file);
+  fclose(project_latex_file);
 }

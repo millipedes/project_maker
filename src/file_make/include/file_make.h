@@ -15,6 +15,6 @@ typedef struct FILE_MAKE_T {
 file_make * init_file_make(char * file_dest);
 void add_to_make_src(file_make * fm, char * addition);
 void write_file_make(file_make * fm);
-void free_file_maker(file_make * fm);
+void free_file_make(file_make * fm);
 
 #endif

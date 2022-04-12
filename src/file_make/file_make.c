@@ -17,7 +17,7 @@
 file_make * init_file_make(char * file_dest) {
   file_make * fm = calloc(1, sizeof(struct FILE_MAKE_T));
   fm->src = NULL;
-  fm->fp = fopen(file_dest, "a");
+  fm->fp = fopen(file_dest, "w");
   return fm;
 }
 
@@ -45,7 +45,7 @@ void write_file_make(file_make * fm) {
  * @param   fm - the Makefile to be freed
  * @return N/a
  */
-void free_file_maker(file_make * fm) {
+void free_file_make(file_make * fm) {
   if(fm->fp) {
     fclose(fm->fp);
   }
