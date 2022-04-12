@@ -6,9 +6,9 @@ int main(int argc, char ** argv) {
    * ^ only true if not the help flag i.e. the and
    * Note print_invalid_flags_help_interface exit with code 1
    */
-  if(argc < 3 && (argc != 2 && *(*(argv + 1) + 1) != 'h')) {
-    print_invalid_flags_help_interface();
-  }
+  // if(argc < 3 && (argc != 2 && *(*(argv + 1) + 1) != 'h')) {
+  //   print_invalid_flags_help_interface();
+  // }
   // write the files from the file_write_interface
   write_files(argc, argv);
   return 0;

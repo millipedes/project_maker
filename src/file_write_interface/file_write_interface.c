@@ -1,30 +1,36 @@
+/**
+ * @file file_write_interface.c
+ * @brief This file is responsible for writing all of the files in the project
+ * @author Matthew C. Lindeman
+ * @date Apr 12 2022
+ * @bug None known
+ * @todo Nothing
+ */
 #include"include/file_write_interface.h"
 
+/**
+ * This function takes the command line input and generates a 
+ * @param
+ * @return
+ */
 void write_files(int argc, char ** argv) {
-  int flag = 0;
-  // int latex_written = 0;
+  int latex_written = 0;
   /**
    * I don't think this block is deoxygen standard, but it is here to help keep
    * track of the flags.
    *
    * @flag h   - help flag
-   * @flag c   - classification flag (like your the orgranization)
-   * @flag t/l - latex    file type flag, followed by name/path
-   * @flag p   - plantuml file type flag, followed by name/path
-   * @flag C   - C        file type flag, followed by name/path
-   * @flag g   - git project flag
-   * @flag e   - editor, defaults to neovim
    */
-  while((flag = getopt(argc, argv, "h:c:t:l:p:C:g:e:")) != -1) {
-    switch(flag) {
+  for(int i = 1; i < argc; i++) {
+    switch(argv[i][0]) {
       case 'h':
-        print_help_interface();
-        break;
-      case 'c':
+        print_invalid_flags_help_interface();
         break;
       case 't':
-        break;
       case 'l':
+        if(latex_written == 0) {
+          latex_written = 1;
+        }
         break;
       case 'p':
         break;
@@ -32,8 +38,8 @@ void write_files(int argc, char ** argv) {
         break;
       case 'g':
         break;
-      case 'e':
-        break;
+      default:
+        fprintf(stderr, "Unknown flag `%c`", argv[i][0]);
     }
   }
 }
