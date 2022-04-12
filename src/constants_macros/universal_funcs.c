@@ -77,10 +77,17 @@ char ** path_to_fpd_pair(char * path) {
       index_curr_dir = i;
     }
   }
-  int file_name_size = len - index_curr_dir;
   char ** attribs = calloc(2, sizeof(char *));
-  attribs[0] = get_sub_string(path, 0, (len - file_name_size + 1));
-  attribs[1] = get_sub_string(path, (len - file_name_size + 1), len);
+  int file_name_size = len - index_curr_dir;
+  // If just a file, the parent directory is just the null character
+  if(index_curr_dir == 0) {
+    attribs[0] = calloc(1, sizeof(char));
+    attribs[0][0] = '\0';
+    attribs[1] = get_sub_string(path, 0, file_name_size);
+  } else {
+    attribs[0] = get_sub_string(path, 0, (len - file_name_size + 1));
+    attribs[1] = get_sub_string(path, (len - file_name_size + 1), len);
+  }
   return attribs;
 }
 
