@@ -11,6 +11,8 @@
 
 #include<stdio.h>
 #include<string.h>
+#include<sys/types.h>
+#include<sys/stat.h>
 #include<unistd.h>
 #include"../../constants_macros/include/constants.h"
 #include"../../constants_macros/include/universal_funcs.h"
@@ -18,8 +20,10 @@
 #include"../../menu_interface/include/menu_interface.h"
 
 void write_files(int argc, char ** argv);
-void write_latex_extension(file_make * fm, char ** fpd_pair);
+void write_latex_extension(file_make * fm, char * file_name);
 void write_C_extension(file_make * fm);
+void write_git_extension(file_make * fm);
+void write_plantuml_extension(file_make * fm, char * file_name);
 void translate_default_file(char * project_path, char * default_path);
 
 #endif
