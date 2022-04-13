@@ -70,8 +70,8 @@ The following example is meant to demonstrate the functionality of this program:
 $ ./project_maker_binary t latex_project_dir/file C c_dir/file
 ```
 This will make directories (if it doesn't alredy exist) `latex_project_dir/` and
-`c_dir` and place the user's default C, and latex, files in them. Additionally,
-the program dynamically generates a Makefile.
+`c_dir/` in the current directory and place the user's default C, and latex,
+files in them. Additionally, the program dynamically generates a Makefile.
 
 ### :mag: Tests
 I have written a `test.sh` file. If you run this test.sh file in the root of the
