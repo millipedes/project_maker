@@ -21,7 +21,7 @@
 void deep_copy_string(char * dest, char * src) {
   size_t len = strnlen(src, MX_STR);
   dest = calloc(len, sizeof(char));
-  for(int i = 0; i < len; i++) {
+  for(int i = 0; i < (int)len; i++) {
     *(dest + i) = *(src + i);
   }
 }
@@ -39,7 +39,7 @@ void append_string(char * src, char * addition) {
     size_t add_len = strnlen(addition, MX_STR);
     size_t ori_len = strnlen(src, MX_STR);
     src = realloc(src, (add_len + ori_len) * sizeof(char));
-    for(int i = 0; i < add_len; i++) {
+    for(int i = 0; i < (int)add_len; i++) {
       *(src + i + ori_len + 1) = *(addition + i);
     }
   }
@@ -56,7 +56,7 @@ void append_string(char * src, char * addition) {
  */
 char * get_sub_string(char * src, int start, int end_po) {
   char * ss = calloc(end_po - start + 1, sizeof(char));
-  for(int i = start; i < end_po; i++) {
+  for(int i = start; i < (int)end_po; i++) {
     *(ss + i - start) = *(src + i);
   }
   return ss;
@@ -72,7 +72,7 @@ char * get_sub_string(char * src, int start, int end_po) {
 char ** path_to_fpd_pair(char * path) {
   size_t len = strnlen(path, MX_STR);
   int index_curr_dir = 0;
-  for(int i = 0; i < len; i++) {
+  for(int i = 0; i < (int)len; i++) {
     if(*(path + i) == '/') {
       index_curr_dir = i;
     }
