@@ -24,5 +24,10 @@ void print_invalid_flags_help_interface(void) {
  */
 void print_help_interface(void) {
   printf("Usage:\n");
-  printf("-h       The Help Flag\n");
+  printf("h The Help Flag\n");
+  printf("t The Latex File Type Flag\n");
+  printf("p The plantuml File Type Flag\n");
+  printf("C The C File Type Flag\n");
+  printf("g The git Flag\n");
+
 }
