@@ -26,6 +26,10 @@ $ git clone https://github.com/millipedes/project_maker.git
 $ cd project_maker/
 $ mkdir bin
 ```
+
+Then, go to the file `src/constants_macros/include/constants.h` and change
+the paths to reflect your default files.
+
 Then, while in the same directory, `make` the binary and confirm that it worked:
 ```
 $ make
@@ -49,8 +53,6 @@ the git clone):
 ```
 $ sudo mv ./bin/main /usr/bin/my_binary
 ```
-Finally, go to the file `src/constants_macros/include/constants.h` and change
-the paths to reflect your default files.
 
 ### Windows and Mac
 For WindowsOS and MacOS users, I cannot support these operating systems. If you
