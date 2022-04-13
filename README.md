@@ -4,8 +4,10 @@ This project is meant to produce a binary used to automatically generate
 projects based off flags provided by the user. Currently supported types are:
 - C
 - LaTeX
+
 However, this project also dynamically makes Makefiles as well. The supported
 types (along with their interface with respect to the Makefile) are as follows:
+
 - C (gcc)
 - LaTeX (pdflatex)
 - plantuml (plantuml)
