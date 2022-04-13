@@ -27,6 +27,10 @@ $ cd project_maker/
 $ mkdir bin
 ```
 
+One feature of this program is the ability to clone cookie cutter files of the
+supported formats (C and LaTeX). Thus you should make default files for the
+program to make (in future versions, default files will be provided).
+
 Then, go to the file `src/constants_macros/include/constants.h` and change
 the paths to reflect your default files.
 
