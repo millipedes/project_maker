@@ -15,6 +15,10 @@
  * @return N/a
  */
 void write_files(int argc, char ** argv) {
+  int t_flag = 0;
+  int p_flag = 0;
+  int g_flag = 0;
+  int C_flag = 0;
   file_make * fm = init_file_make(MAKEFILE_PATH);
   for(int i = 1; i < argc; i += 2) {
     switch(argv[i][0]) {
@@ -22,23 +26,35 @@ void write_files(int argc, char ** argv) {
         print_help_interface();
         break;
       case 't':
-        write_latex_extension(fm, argv[i + 1]);
-        translate_default_file(argv[i + 1], LATEX_DEFAULT_FILE);
+        t_flag = i;
         break;
       case 'p':
-        write_plantuml_extension(fm, argv[i + 1]);
+        p_flag = i;
         break;
       case 'C':
-        write_C_extension(fm);
-        translate_default_file(argv[i + 1], C_DEFAULT_FILE);
+        C_flag = i;
         break;
       case 'g':
-        write_git_extension(fm);
+        g_flag = i;
         break;
       default:
         fprintf(stderr, "Unknown flag `%c`", argv[i][0]);
         print_invalid_flags_help_interface();
     }
+  }
+  if(C_flag != 0) {
+    write_C_extension(fm);
+    translate_default_file(argv[C_flag + 1], C_DEFAULT_FILE);
+  }
+  if(t_flag != 0) {
+    write_latex_extension(fm, argv[t_flag + 1]);
+    translate_default_file(argv[t_flag + 1], LATEX_DEFAULT_FILE);
+  }
+  if(p_flag != 0) {
+    write_plantuml_extension(fm, argv[p_flag + 1]);
+  }
+  if(g_flag != 0) {
+    write_git_extension(fm);
   }
   free_file_make(fm);
 }
@@ -50,23 +66,27 @@ void write_files(int argc, char ** argv) {
  * @return      N/a
  */
 void write_latex_extension(file_make * fm, char * file_name) {
+  char ** fpd_pair = path_to_fpd_pair(file_name);
   /**
    * Make the latex project
    */
   fprintf(fm->fp, "t-m:\n");
-  fprintf(fm->fp, "\tpdf-latex %s.tex\n", file_name);
+  fprintf(fm->fp, "\tpdf-latex %s\n", file_name);
   fprintf(fm->fp, "\trm *.log *.aux\n");
   fprintf(fm->fp, "\tclear\n");
   /**
    * Open the latex project
    */
+  char * tmp = get_sub_string(fpd_pair[1], 0, strnlen(fpd_pair[1], MX_STR) - 4);
   fprintf(fm->fp, "t-o:\n");
-  fprintf(fm->fp, "\tevince %s.pdf\n", file_name);
+  fprintf(fm->fp, "\tevince %s%s.pdf\n", fpd_pair[0], tmp);
   /**
    * Edit the tex file
    */
   fprintf(fm->fp, "t-e:\n");
-  fprintf(fm->fp, "\tnvim %s.tex\n", file_name);
+  fprintf(fm->fp, "\tnvim %s\n", file_name);
+  free_fpd_pair(fpd_pair);
+  free(tmp);
 }
 
 /**
@@ -138,10 +158,14 @@ void write_git_extension(file_make * fm) {
  * @return      N/a
  */
 void write_plantuml_extension(file_make * fm, char * file_name) {
+  char ** fpd_pair = path_to_fpd_pair(file_name);
+  char * tmp = get_sub_string(fpd_pair[1], 0, strnlen(fpd_pair[1], MX_STR) - 4);
   fprintf(fm->fp, "p-e:\n");
   fprintf(fm->fp, "\tnvim %s\n", file_name);
   fprintf(fm->fp, "p-o:\n");
-  fprintf(fm->fp, "\tfeh %s\n", file_name);
+  fprintf(fm->fp, "\tfeh %s%s.png\n", fpd_pair[0], tmp);
+  free_fpd_pair(fpd_pair);
+  free(tmp);
 }
 
 /**
@@ -149,7 +173,7 @@ void write_plantuml_extension(file_make * fm, char * file_name) {
  * the user
  * @param project_path - the path to the project file (to include the file name)
  * @param default_path - the path the default file (to include file name)
- * @return N/a
+ * @return         N/a
  */
 void translate_default_file(char * project_path, char * default_path) {
   char ** fpd_pair = path_to_fpd_pair(project_path);
